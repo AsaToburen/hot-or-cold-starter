@@ -25,6 +25,24 @@ newGame();
 		$('#count').text(guessCount);
 		$('#userGuess').val("");
 	}
+
+	function guessResponse(userGuess) {
+			var distance = Math.abs(randomNumber - userGuess);
+			console.log(randomNumber, userGuess, distance);
+			if( userGuess == randomNumber) {
+				$('#feedback').text('You guessed it!');
+			};
+
+			if( distance >= 50) {
+				$('#feedback').text('Ice Cold');
+				} else if (30 <= distance < 50 ) {
+					$('#feedback').text('Cold');
+				  }	else if(20 <= distance < 30) {
+						$('#feedback').text('Warm');
+					}  else if (10 <= distance < 20) {
+							$('#feedback').text('Hot');
+					};
+				};
 	
 	// Get guess from user
 	$('#guessButton').click('input', function () {
@@ -33,32 +51,16 @@ newGame();
 	  		var userGuess = parseInt($( 'input' ).val());
 	  		$('#count').text(++guessCount);
 	  		$('#guessList').append("<li>" + userGuess + "</li>");
+	  		guessResponse(userGuess);
 
-	  	function guessResponse(userGuess) {
-			var distance = Math.abs(randomNumber - userGuess);
-			console.log(randomNumber, userGuess, distance);
-			if( userGuess == randomNumber) {
-				$('#feedback').text('You guessed it!');
-			};
-			if( distance >= 50) {
-				$('#feedback').text('Ice Cold');
-				} else if (30 <= distance < 50 ) {
-					$('#feedback').text('Cold');
-				  }	else if (20 <= distance < 30) {
-						$('#feedback').text('Warm');
-					}  else if (10 <= distance < 20) {
-							$('#feedback').text('Hot');
-					};
-				};
-			};
+	  	
 	
-	  	guessResponse(userGuess);
 	//new game on click	
 	$('.new').on('click', function () {
 		newGame();
 	 	});
-	
-	});
+};	
+});
 });
 		 
 	 
